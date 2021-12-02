@@ -16,7 +16,7 @@ const RESULTS = {
   not_w2: {label: 'Sorry', description: 'Only supported for W2 recipients.  Lorem ipsum.'},
   low_earner: {label: 'Sorry', description: 'Please check with your employer.  Lorem ipsum.'},
   high_earner: {label: 'Yay!', description: 'We have more work to do here.  Lorem ipsum.'},
-  catchall: {label: 'Ohno!', description: 'We do not have a coherent response for these choices.  Lorem ipsum. 4!'},
+  catchall: {label: 'Ohno!', description: 'We do not have a coherent response for these choices.  Lorem ipsum. 5!'},
 };
 
 
