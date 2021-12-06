@@ -1,8 +1,8 @@
 {
-  "name": "smedberg.github.io",
+  "name": "Bes-friend.github.io",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://smedberg.github.io/",
+  "homepage": "https://besfriend.org/",
   "dependencies": {
     "cra-template": "1.1.2",
     "gh-pages": "^3.2.3",
