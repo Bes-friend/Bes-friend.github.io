@@ -1,5 +1,7 @@
 # Branches
 
+Some dumb change HERE'S ANOTHER CHANGE
+
 Since we're deploying in Github Pages and we're using React, we use the technique described at https://dev.to/javascripterika/deploy-a-react-app-as-a-github-user-page-with-yarn-3fka to create production deploys.  This technique uses branches in a somewhat unusual way.  The branches are:
 
 * `main`: this branch contains the compiled, minimized, production code.  DO NOT EDIT THIS BRANCH DIRECTLY.
