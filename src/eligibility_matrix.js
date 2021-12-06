@@ -33,10 +33,14 @@ const RESULTS = {
   not_w2: {label: 'Sorry', md: NOT_SUPPORTED},
   low_earner: {label: 'Sorry', description: 'Please check with your employer.  Lorem ipsum.'},
   
-  high_earner: {label: 'Yay!', description: 'We have more work to do here.  Lorem ipsum.'},
+  high_earner: {label: 'Yay!', description: 'You qualify for Paid Family and Medical Leaave through the California Paid Family Leave program.'},
+  job_protected: {description: 'When you return from your time off, your employer must give you your job back (or an equivalent job.)'},
+  pregnant_and_cfra: {description: 'You can start your time off up to 4 weeks before your due date, and take up to 18 weeks after your baby is born. However, the Paid Family Leave program will only pay up to 17 weeks.'},
+  c_section: {description: 'Typically, women who experience a c-section will get an additional 2 weeks of leave. This means that you can take up to 20 weeks after your baby is born, and the Paid Family Leave program will pay up to 19 weeks.'},
+  bonding_only: {label: 'Care for your newborn', description:'For non-birthing parents, you qualify for 8 weeks of time off.'},
   
   //based on latest survey questions
-  ca_w2_pregnant_high_earner_1yr_notc: {label: 'CA W2 Pregnant CFRA no-C', description: 'You are eligible for 22 weeks off, with 17 of those as paid time off.'},
+  //ca_w2_pregnant_high_earner_1yr_notc: {label: 'CA W2 Pregnant CFRA no-C', description: 'You are eligible for 22 weeks off, with 17 of those as paid time off.'},
   
   
   catchall: {label: 'Ohno!', description: 'We do not have a coherent response for these choices.  Lorem ipsum. 5!'},
@@ -91,6 +95,7 @@ const ELIGIBILITY_MATRIX = [
     },
     eligibilities: ['low_earner']
   },
+  
   {
     label: 'TODO: Incomplete',
     answers: {
@@ -116,7 +121,35 @@ const ELIGIBILITY_MATRIX = [
       work_at_least_1_year_1250_hours: 'yes',
       planned_c_section: 'no'
     },
-    eligibilities: ['high_earner']
+    eligibilities: ['high_earner', 'job_protected', 'pregnant_and_cfra']
+  },
+  {
+    label: 'CA W2 Pregnant CFRA C',
+    answers: {
+      why_need_time_off: 'pregnant',
+      confirm_state_ca: 'y',
+      which_state: undefined,
+      w2_employee: 'y',
+      earned_300_dollars: 'y',
+      employ_at_least_5: 'yes',
+      work_at_least_1_year_1250_hours: 'yes',
+      planned_c_section: 'yes'
+    },
+    eligibilities: ['high_earner', 'job-protected','pregnant_and_cfra','c-section']
+  },
+  {
+    label: 'CA W2 Newborn Care CFRA',
+    answers: {
+      why_need_time_off: 'care_for_newborn',
+      confirm_state_ca: 'y',
+      which_state: undefined,
+      w2_employee: 'y',
+      earned_300_dollars: 'y',
+      employ_at_least_5: 'yes',
+      work_at_least_1_year_1250_hours: 'yes',
+      planned_c_section: undefined
+    },
+    eligibilities: ['high_earner', 'job-protected', 'bonding_only']
   },
   
   // Last item matches everything- all answers are undefined
