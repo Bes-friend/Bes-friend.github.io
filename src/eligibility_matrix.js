@@ -1,5 +1,27 @@
 import {EligibilityDisplayBlue} from './eligibility_display_blue.js'
 
+//trying this out
+const NOT_SUPPORTED = `
+This tool currently only supports California workers who receive a W-2.
+
+For California workers who are not currently employed, but earned at least $300 in the last 12 months, you are still eligible for Short Term Disability and Paid Family Leave as long as your paystub or w-2 shows a deduction for “CA SDI”. This means that you have paid into the state’s disability insurance fund. You can apply for payment on [California Employment Development Department’s website](https://edd.ca.gov/disability/paid-family-leave/ "Paid Family Leave") for Paid Family Leave.
+
+For California workers who do not receive a W-2, consider visiting these other resources:
+
+*  California Employment Development Department’s website on Paid Family Leave for Pregnant Mothers 
+
+* California Employment Development Department’s website on Paid Family Leave for Self Employed individuals
+
+* Legal Aid at Work’s website to find more resources or to call their hotline.
+
+For non-California workers, you may be able to learn more about your benefits by:
+
+* Searching online for your state and “Paid Family Leave” to see if your state has a similar program
+
+* Finding out if your employer offers Short Term Disability insurance. If so, read the benefits plan carefully. If it covers pregnancy, you may be able to submit a claim to the insurance plan and receive partial payment for your time off.
+
+* Finding out if your employer offers maternity, paternity, or parental leave. You could find out either by reading an employee handbook if your employer has one, or asking your Human Resources department.
+`
 
 /*
 The RESULTS constant contains all results that may be displayed
@@ -8,14 +30,17 @@ to users.  For example, one user may get a single result like
 results like 'you are eligible for FMLA' and 'you are eligible for SNAP'.
 */
 const RESULTS = {
-  not_supported: {label: 'Sorry', description: 'Not supported.  Lorem ipsum.'},
-  not_ca: {label: 'Sorry', description: 'Only supported for CA residents.  Lorem ipsum.'},
-  not_ca_red: {label: 'Sorry', description: 'Only supported for CA residents.  RED.', html: '<b>only</b> supported for CA residents (this is HTML)'},
-  not_ca_green: {label: 'Sorry', description: 'Only supported for CA residents.  GREEN.', md: 'only **supported** for CA residents (this is Markdown)'},
-  not_ca_blue: {label: 'Sorry', description: 'Only supported for CA residents.  BLUE.', react: EligibilityDisplayBlue},
-  not_w2: {label: 'Sorry', description: 'Only supported for W2 recipients.  Lorem ipsum.'},
+  not_supported: {label: 'Sorry', md: NOT_SUPPORTED},
+  not_ca: {label: 'Sorry', md: NOT_SUPPORTED},
+  not_w2: {label: 'Sorry', md: NOT_SUPPORTED},
   low_earner: {label: 'Sorry', description: 'Please check with your employer.  Lorem ipsum.'},
+  
   high_earner: {label: 'Yay!', description: 'We have more work to do here.  Lorem ipsum.'},
+  
+  //based on latest survey questions
+  ca_w2_pregnant_high_earner_1yr_notc: {label: 'CA W2 Pregnant CFRA no-C', description: 'You are eligible for 22 weeks off, with 17 of those as paid time off.'},
+  
+  
   catchall: {label: 'Ohno!', description: 'We do not have a coherent response for these choices.  Lorem ipsum. 5!'},
 };
 
@@ -38,88 +63,63 @@ const ELIGIBILITY_MATRIX = [
   {
     label: 'Unreported time off requirement',
     answers: {
-      why_need_time_off: 'none',
+      why_need_time_off: 'other',
       confirm_state_ca: undefined,
       which_state: undefined,
       w2_employee: undefined,
       earned_300_dollars: undefined,
-      what_color_is_your_rainbow: undefined
     },
     eligibilities: ['not_supported']
   },
   {
-    label: 'Not California Red',
-    answers: {
-      why_need_time_off: 'any',
-      confirm_state_ca: 'n',
-      which_state: undefined,
-      w2_employee: undefined,
-      earned_300_dollars: undefined,
-      what_color_is_your_rainbow: 'red'
-    },
-    eligibilities: ['not_ca_red']
-  },
-  {
-    label: 'Not California green',
-    answers: {
-      why_need_time_off: 'any',
-      confirm_state_ca: 'n',
-      which_state: undefined,
-      w2_employee: undefined,
-      earned_300_dollars: undefined,
-      what_color_is_your_rainbow: 'green'
-    },
-    eligibilities: ['not_ca_green']
-  },
-  {
-    label: 'Not California blue',
-    answers: {
-      why_need_time_off: 'any',
-      confirm_state_ca: 'n',
-      which_state: undefined,
-      w2_employee: undefined,
-      earned_300_dollars: undefined,
-      what_color_is_your_rainbow: 'blue'
-    },
-    eligibilities: ['not_ca_blue']
-  },
-  {
     label: 'No W2',
     answers: {
-      why_need_time_off: 'any',
+      why_need_time_off: undefined,
       confirm_state_ca: 'y',
       which_state: undefined,
       w2_employee: 'n',
       earned_300_dollars: undefined,
-      what_color_is_your_rainbow: undefined
     },
     eligibilities: ['not_w2']
   },
   {
     label: 'Less than $300 in 18 months',
     answers: {
-      why_need_time_off: 'any',
+      why_need_time_off: undefined,
       confirm_state_ca: 'y',
       which_state: undefined,
       w2_employee: 'y',
       earned_300_dollars: 'n',
-      what_color_is_your_rainbow: undefined
     },
     eligibilities: ['low_earner']
   },
   {
     label: 'TODO: Incomplete',
     answers: {
-      why_need_time_off: 'any',
+      why_need_time_off: undefined,
       confirm_state_ca: 'y',
       which_state: undefined,
       w2_employee: 'y',
       earned_300_dollars: 'y',
-      what_color_is_your_rainbow: undefined
     },
     eligibilities: ['high_earner']
   },
   
+  // adding one scenario based on real survey questions
+  {
+    label: 'CA W2 Pregnant CFRA no-C',
+    answers: {
+      why_need_time_off: 'pregnant',
+      confirm_state_ca: 'y',
+      which_state: undefined,
+      w2_employee: 'y',
+      earned_300_dollars: 'y',
+      employ_at_least_5: 'yes',
+      work_at_least_1_year_1250_hours: 'yes',
+      planned_c_section: 'no'
+    },
+    eligibilities: ['high_earner']
+  },
   
   // Last item matches everything- all answers are undefined
   {
@@ -130,7 +130,6 @@ const ELIGIBILITY_MATRIX = [
       which_state: undefined,
       w2_employee: undefined,
       earned_300_dollars: undefined,
-      what_color_is_your_rainbow: undefined
     },
     eligibilities: ['catchall']
   },
