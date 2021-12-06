@@ -10,7 +10,7 @@ function App() {
         This is the header
       </div>
       <div id="surveyElement" />
-      <div id="eligibilityResultsContainer" />
+      <div id="eligibilityResults" />
       <div>
         This is the footer
       </div>

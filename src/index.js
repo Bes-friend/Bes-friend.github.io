@@ -33,4 +33,4 @@ ReactDOM.render(
   <Survey.Survey json={surveyJSON} onComplete={onSurveyComplete}/>,
   document.getElementById("surveyElement"));
 
-eligibilitiesDisplay = ReactDOM.render(React.createElement(EligibilitiesDisplay, null), document.getElementById("eligibilityResultsContainer"));
+eligibilitiesDisplay = ReactDOM.render(React.createElement(EligibilitiesDisplay, null), document.getElementById("eligibilityResults"));
