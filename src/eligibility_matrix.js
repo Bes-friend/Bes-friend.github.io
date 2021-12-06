@@ -1,5 +1,3 @@
-import {EligibilityDisplayBlue} from './eligibility_display_blue.js'
-
 //trying this out
 const NOT_SUPPORTED = `
 This tool currently only supports California workers who receive a W-2.
