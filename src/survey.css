@@ -1,0 +1,13 @@
+/* See also https://surveyjs.io/Examples/Library?id=survey-cssclasses&platform=Reactjs&theme=default#content-js */
+
+.sv_qstn {
+	color: blue;
+}
+
+.sv_q_radiogroup_label {
+	color: green;
+}
+
+.sv_q_dropdown_control option {
+	color: purple;
+}
