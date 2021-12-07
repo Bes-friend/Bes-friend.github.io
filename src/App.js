@@ -1,4 +1,6 @@
 import './App.css';
+import './survey.css';
+import './eligibility_results.css';
 import React from 'react'; 
 
 
