@@ -11,7 +11,8 @@
     "react-markdown": "^7.1.1",
     "react-render-html": "^0.6.0",
     "react-scripts": "4.0.3",
-    "survey-react": "^1.8.79"
+    "survey-react": "^1.8.79",
+    "webpack": "^5.65.0"
   },
   "scripts": {
     "start": "react-scripts start",
