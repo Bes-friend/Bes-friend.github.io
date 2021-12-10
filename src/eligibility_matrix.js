@@ -188,7 +188,7 @@ const ELIGIBILITY_MATRIX = [
       which_state: undefined,
       w2_employee: 'y',
       earned_300_dollars: 'y',
-      employ_at_least_5: undefined',
+      employ_at_least_5: undefined,
       work_at_least_1_year_1250_hours: undefined,
       planned_c_section: undefined
       //TODO: need to add govt
