@@ -27,10 +27,49 @@ var surveyJSON = {
    "name": "page1",
    "elements": [
     {
+      "type": "dropdown",
+      "name": "choose_specific_eligibility",
+      "title": "Choose a specific eligibility (for testing)",
+      "choices": [
+      {
+        "value": "cfra_eligible_public_school_or_government_employee",
+        "text": "CFRA eligible public school or government employee"
+      },
+      {
+        "value": "pdl_eligible_public_school_or_government_employee",
+        "text": "PDL eligible public school or government employee"
+      },
+      {
+        "value": "cfra_eligible",
+        "text": "CFRA eligible "
+      },
+      {
+        "value": "pdl_eligible",
+        "text": "PDL Eligible"
+      },
+      {
+        "value": "sdi_only",
+        "text": "SDI only"
+      },
+      {
+        "value": "baby_bonding",
+        "text": "Baby Bonding"
+      },
+      {
+        "value": "medical_need",
+        "text": "Medical Need"
+      },
+      {
+        "value": "not_supported",
+        "text": "Not Supported"
+      },
+      ]
+    },
+    {
      "type": "radiogroup",
      "name": "why_need_time_off",
      "title": "Which of the following reasons do you need time off?",
-     "isRequired": true,
+     "isRequired": false,
      "choices": [
       {
        "value": "pregnant",
@@ -52,7 +91,7 @@ var surveyJSON = {
      "name": "confirm_state_ca",
      "visibleIf": "{why_need_time_off} <> 'Other'",
      "title": "Confirm state = CA?",
-     "isRequired": true,
+     "isRequired": false,
      "choices": [
       {
        "value": "y",
@@ -284,7 +323,7 @@ var surveyJSON = {
      "visibleIf": "{confirm_state_ca} = 'y'",
      "title": "Are you currently an employee who receives a W-2 at the end of the year? ",
      "description": "(If you are currently self-employed, an independent contractor, or unemployed, answer No.) ",
-     "isRequired": true,
+     "isRequired": false,
      "choices": [
       {
        "value": "y",
@@ -303,7 +342,7 @@ var surveyJSON = {
      "visibleIf": "{confirm_state_ca} = 'y' and {w2_employee} = 'y'",
      "title": "Have you earned at least $300 over the last 18 months?",
      "description": "(It's ok if you earned the $300 over many paychecks, and from different employers. It all counts.)",
-     "isRequired": true,
+     "isRequired": false,
      "choices": [
       {
        "value": "y",
@@ -320,7 +359,7 @@ var surveyJSON = {
      "name": "employ_at_least_5",
      "visibleIf": "{confirm_state_ca} = 'y' and {w2_employee} = 'y'",
      "title": "Does your employer employ at least 5 people, including you?",
-     "isRequired": true,
+     "isRequired": false,
      "choices": [
       {
        "value": "yes",
@@ -339,7 +378,7 @@ var surveyJSON = {
      "visibleIf": "{confirm_state_ca} = 'y' and {employ_at_least_5} = 'yes' and {w2_employee} = 'y'",
      "title": "Have you worked at your current job for at least 1 year, at least part time?",
      "description": "(Part time means at least 1,250 hours over the last 12 months, or about 25 hours per week.)",
-     "isRequired": true,
+     "isRequired": false,
      "choices": [
       {
        "value": "yes",
@@ -357,7 +396,7 @@ var surveyJSON = {
      "visible": false,
      "visibleIf": "{w2_employee} = 'y' and {why_need_time_off} = 'pregnant'",
      "title": "Are you planning to have a Cesarean section (C-section)?",
-     "isRequired": true,
+     "isRequired": false,
      "choices": [
       {
        "value": "yes",

@@ -7,17 +7,22 @@ import {RESULTS} from './eligibility_matrix.js';
 function Eligibility(eligibility) {
   console.log("Rendering eligibility ", eligibility);
   if (RESULTS[eligibility.value].react) {
-    return React.createElement(RESULTS[eligibility.value].react, null);
+    var label = <span className='attention'>{RESULTS[eligibility.value].label}</span>
+    var element = React.createElement(RESULTS[eligibility.value].react, null);
+    return [
+      label,
+      element
+    ];
   } else if (RESULTS[eligibility.value].md) {
     return (
       <div>
-        <span>{RESULTS[eligibility.value].label}:</span>&nbsp;<ReactMarkdown children={RESULTS[eligibility.value].md} />
+        <span className='attention'>{RESULTS[eligibility.value].label}:</span>&nbsp;<ReactMarkdown children={RESULTS[eligibility.value].md} />
       </div>
     );
   } else if (RESULTS[eligibility.value].html) {
     return (
       <div>
-        <span>{RESULTS[eligibility.value].label}:</span>&nbsp;<span>{renderHTML(RESULTS[eligibility.value].html)}</span>
+        <span className='attention'>{RESULTS[eligibility.value].label}:</span>&nbsp;<span>{renderHTML(RESULTS[eligibility.value].html)}</span>
       </div>
     );
   }

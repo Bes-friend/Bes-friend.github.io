@@ -1,24 +1,68 @@
+import {EligibilityDisplayCFRAGovtEmployee} from './components/eligibilities_display_cfra_eligible_public_school_or_government_employee.js';
+import {EligibilityDisplayPDLEligibleGovtEmployee} from './components/eligibility_display_pdl_eligible_govt_employee.js';
+import {EligibilityDisplayCFRA} from './components/eligibilities_display_cfra_eligible.js';
+import {EligibilityDisplayPDLEligible} from './components/eligibilities_display_pdl_eligible.js';
+import {EligibilityDisplaySDIOnly} from './components/eligibilities_display_sdi_only.js';
+import {EligibilityDisplayBabyBonding} from './components/eligibilities_display_baby_bonding.js';
+import {EligibilityDisplayMedicalNeed} from './components/eligibilities_display_medical_need.js';
+
 //trying this out
 const NOT_SUPPORTED = `
-This tool currently only supports California workers who receive a W-2.
+<div>
+  This tool does not currently cover non-California workers or non-W-2 workers.
+</div>
+<br/>
+<div>
+  For California workers who are not currently employed, but earned at
+  least $300 in the last 12 months, you may still be eligible for Short
+  Term Disability and Paid Family Leave as long as your paystub or w-2
+  shows a deduction for "CA SDI" and you are not currently claiming
+  unemployment insurance. This means that you have paid into the state's
+  disability insurance fund. You can apply for payment on California
+  Employment Development Department's website for
+  &nbsp;<a href='https://edd.ca.gov/disability/paid-family-leave/'>
+    Paid Family Leave
+  </a>.
+</div>
+<div>
+  For California workers who do not receive a W-2, consider visiting these
+  other resources:
+</div>
+<ul>
+  <li>
+    California Employment Development Department's website on
+    <a href='https://edd.ca.gov/disability/paid-family-leave/Mothers.htm'>
+      Paid Family Leave for Pregnant Mothers
+    </a>
+  </li>
+  <li>
+    California Employment Development Department's website on
+    &nbsp;<a href='https://edd.ca.gov/disability/paid-family-leave/Self-Employed.htm'>
+      Paid Family Leave for Self Employed individuals
+    </a>
+  </li>
+  <li>
+    <a href='https://legalaidatwork.org/our-programs/work-and-family-program/'>
+      Legal Aid at Work's website
+    </a>
+    &nbsp;to find more resources or to call their hotline.
+  </li>
+</ul>
+<div>
+  For non-California workers, you may be able to learn more about your benefits by:
+</div>
+<ul>
+  <li>
+    Searching online for your state and "Paid Family Leave" to see if your state has a similar program
+  </li>
+  <li>
+    Finding out if your employer offers Short Term Disability insurance. If so, read the benefits plan carefully. If it covers pregnancy, you may be able to submit a claim to the insurance plan and receive partial payment for your time off.
+  </li>
+  <li>
+    Finding out if your employer offers maternity, paternity, or parental leave. You could find out either by reading an employee handbook if your employer has one, or asking your Human Resources department.
+  </li>
+</ul>
 
-For California workers who are not currently employed, but earned at least $300 in the last 12 months, you are still eligible for Short Term Disability and Paid Family Leave as long as your paystub or w-2 shows a deduction for “CA SDI”. This means that you have paid into the state’s disability insurance fund. You can apply for payment on [California Employment Development Department’s website](https://edd.ca.gov/disability/paid-family-leave/ "Paid Family Leave") for Paid Family Leave.
-
-For California workers who do not receive a W-2, consider visiting these other resources:
-
-*  California Employment Development Department’s website on Paid Family Leave for Pregnant Mothers 
-
-* California Employment Development Department’s website on Paid Family Leave for Self Employed individuals
-
-* Legal Aid at Work’s website to find more resources or to call their hotline.
-
-For non-California workers, you may be able to learn more about your benefits by:
-
-* Searching online for your state and “Paid Family Leave” to see if your state has a similar program
-
-* Finding out if your employer offers Short Term Disability insurance. If so, read the benefits plan carefully. If it covers pregnancy, you may be able to submit a claim to the insurance plan and receive partial payment for your time off.
-
-* Finding out if your employer offers maternity, paternity, or parental leave. You could find out either by reading an employee handbook if your employer has one, or asking your Human Resources department.
 `
 
 /*
@@ -28,7 +72,14 @@ to users.  For example, one user may get a single result like
 results like 'you are eligible for FMLA' and 'you are eligible for SNAP'.
 */
 const RESULTS = {
-  not_supported: {label: 'Sorry', md: NOT_SUPPORTED},
+  cfra_eligible_public_school_or_government_employee: {label: 'Yes!', react: EligibilityDisplayCFRAGovtEmployee},
+  pdl_eligible_public_school_or_government_employee: {label: 'Yes!', react: EligibilityDisplayPDLEligibleGovtEmployee},
+  cfra_eligible: {label: 'Yes!', react: EligibilityDisplayCFRA},
+  pdl_eligible: {label: 'Yes!', react: EligibilityDisplayPDLEligible},
+  sdi_only: {label: 'You qualify for paid time off', react: EligibilityDisplaySDIOnly},
+  baby_bonding: {label: 'You can take time off', react: EligibilityDisplayBabyBonding},
+  medical_need: {label: 'You may qualify for paid time off', react: EligibilityDisplayMedicalNeed},
+  not_supported: {html: NOT_SUPPORTED},
   not_ca: {label: 'Sorry', md: NOT_SUPPORTED},
   not_w2: {label: 'Sorry', md: NOT_SUPPORTED},
   low_earner: {label: 'Sorry', description: 'Please check with your employer.  Lorem ipsum.'},
@@ -62,6 +113,63 @@ Each entry in ELIGIBILITY_MATRIX has a number of parts:
 * eligibilities: a list of the names of entries in the RESULTS map that are relevant for this entry
 */
 const ELIGIBILITY_MATRIX = [
+  {
+    label: 'TESTING',
+    answers: {
+      choose_specific_eligibility: 'cfra_eligible_public_school_or_government_employee'
+    },
+    eligibilities: ['cfra_eligible_public_school_or_government_employee']
+  },
+  {
+    label: 'TESTING',
+    answers: {
+      choose_specific_eligibility: 'pdl_eligible_public_school_or_government_employee'
+    },
+    eligibilities: ['pdl_eligible_public_school_or_government_employee']
+  },
+  {
+    label: 'TESTING',
+    answers: {
+      choose_specific_eligibility: 'cfra_eligible'
+    },
+    eligibilities: ['cfra_eligible']
+  },
+  {
+    label: 'TESTING',
+    answers: {
+      choose_specific_eligibility: 'pdl_eligible'
+    },
+    eligibilities: ['pdl_eligible']
+  },
+  {
+    label: 'TESTING',
+    answers: {
+      choose_specific_eligibility: 'sdi_only'
+    },
+    eligibilities: ['sdi_only']
+  },
+  {
+    label: 'TESTING',
+    answers: {
+      choose_specific_eligibility: 'baby_bonding'
+    },
+    eligibilities: ['baby_bonding']
+  },
+  {
+    label: 'TESTING',
+    answers: {
+      choose_specific_eligibility: 'medical_need'
+    },
+    eligibilities: ['medical_need']
+  },
+  {
+    label: 'TESTING',
+    answers: {
+      choose_specific_eligibility: 'not_supported'
+    },
+    eligibilities: ['not_supported']
+  },
+
   {
     label: 'Unreported time off requirement',
     answers: {
