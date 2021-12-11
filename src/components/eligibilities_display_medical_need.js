@@ -1,9 +1,4 @@
 import React from 'react';
-import {Timeline} from './timeline.js';
-import {RegisterAndApply} from './register_and_apply.js';
-import {Faq} from './faq.js';
-import {Help} from './help.js';
-import {Disclaimer} from './disclaimer.js';
 
 class EligibilityDisplayMedicalNeed extends React.Component {
   render() {
