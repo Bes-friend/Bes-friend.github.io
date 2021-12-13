@@ -84,14 +84,23 @@ const RESULTS = {
   not_w2: {label: 'Sorry', md: NOT_SUPPORTED},
   low_earner: {label: 'Sorry', description: 'Please check with your employer.  Lorem ipsum.'},
   
+  //caliornians
+  sdi_only: {label:'Yes, you qualify for paid time off', description:'placeholder'},
+  pdl_non_govt: {label:'Yes, you qualify for paid time off', description:'placeholder'},
+  pdl_govt: {label:'Yes, you qualify for paid time off', description:'placeholder'},
+  cfra_non_govt: {label:'Yes, you qualify for paid time off', description:'placeholder'},
+  cfra_govt: {label:'Yes, you qualify for paid time off', description:'placeholder'},
+  bonding: {label:'Yes, you should bond with baby!', description:'placeholder'},
+  medical_need: {label:'Care for yourself', description:'placeholder'},
+  
+  /*
   high_earner: {label: 'Yay!', description: 'You qualify for Paid Family and Medical Leaave through the California Paid Family Leave program.'},
   job_protected: {description: 'When you return from your time off, your employer must give you your job back (or an equivalent job.)'},
   pregnant_and_cfra: {description: 'You can start your time off up to 4 weeks before your due date, and take up to 18 weeks after your baby is born. However, the Paid Family Leave program will only pay up to 17 weeks.'},
   c_section: {description: 'Typically, women who experience a c-section will get an additional 2 weeks of leave. This means that you can take up to 20 weeks after your baby is born, and the Paid Family Leave program will pay up to 19 weeks.'},
   bonding_only: {label: 'Care for your newborn', description:'For non-birthing parents, you qualify for 8 weeks of time off.'},
-  
+  */
   //based on latest survey questions
-  //ca_w2_pregnant_high_earner_1yr_notc: {label: 'CA W2 Pregnant CFRA no-C', description: 'You are eligible for 22 weeks off, with 17 of those as paid time off.'},
   
   
   catchall: {label: 'Ohno!', description: 'We do not have a coherent response for these choices.  Lorem ipsum. 5!'},
@@ -205,20 +214,22 @@ const ELIGIBILITY_MATRIX = [
   },
   
   {
-    label: 'TODO: Incomplete',
+    label: 'CA W2 SDI only',
     answers: {
-      why_need_time_off: undefined,
+      why_need_time_off: 'pregnant',
       confirm_state_ca: 'y',
       which_state: undefined,
       w2_employee: 'y',
       earned_300_dollars: 'y',
+      employ_at_least_5: 'no',
+      work_at_least_1_year_1250_hours: undefined,
+      planned_c_section: undefined
     },
-    eligibilities: ['high_earner']
+    eligibilities: ['sdi_only']
   },
   
-  // adding one scenario based on real survey questions
   {
-    label: 'CA W2 Pregnant CFRA no-C',
+    label: 'CA W2 PDL nongovt',
     answers: {
       why_need_time_off: 'pregnant',
       confirm_state_ca: 'y',
@@ -226,13 +237,14 @@ const ELIGIBILITY_MATRIX = [
       w2_employee: 'y',
       earned_300_dollars: 'y',
       employ_at_least_5: 'yes',
-      work_at_least_1_year_1250_hours: 'yes',
-      planned_c_section: 'no'
+      work_at_least_1_year_1250_hours: 'no',
+      planned_c_section: undefined
+      //TODO: need to add govt
     },
-    eligibilities: ['high_earner', 'job_protected', 'pregnant_and_cfra']
+    eligibilities: ['pdl_non_govt']
   },
   {
-    label: 'CA W2 Pregnant CFRA C',
+    label: 'CA W2 PDL govt',
     answers: {
       why_need_time_off: 'pregnant',
       confirm_state_ca: 'y',
@@ -240,15 +252,16 @@ const ELIGIBILITY_MATRIX = [
       w2_employee: 'y',
       earned_300_dollars: 'y',
       employ_at_least_5: 'yes',
-      work_at_least_1_year_1250_hours: 'yes',
-      planned_c_section: 'yes'
+      work_at_least_1_year_1250_hours: 'no',
+      planned_c_section: undefined
+      //TODO: need to add govt
     },
-    eligibilities: ['high_earner', 'job-protected','pregnant_and_cfra','c-section']
+    eligibilities: ['pdl_govt']
   },
   {
-    label: 'CA W2 Newborn Care CFRA',
+    label: 'CA W2 CFRA nongovt',
     answers: {
-      why_need_time_off: 'care_for_newborn',
+      why_need_time_off: 'pregnant',
       confirm_state_ca: 'y',
       which_state: undefined,
       w2_employee: 'y',
@@ -256,9 +269,57 @@ const ELIGIBILITY_MATRIX = [
       employ_at_least_5: 'yes',
       work_at_least_1_year_1250_hours: 'yes',
       planned_c_section: undefined
+      //TODO: need to add govt
     },
-    eligibilities: ['high_earner', 'job-protected', 'bonding_only']
+    eligibilities: ['cfra_non_govt']
   },
+  {
+    label: 'CA W2 CFRA govt',
+    answers: {
+      why_need_time_off: 'pregnant',
+      confirm_state_ca: 'y',
+      which_state: undefined,
+      w2_employee: 'y',
+      earned_300_dollars: 'y',
+      employ_at_least_5: 'yes',
+      work_at_least_1_year_1250_hours: 'yes',
+      planned_c_section: undefined
+      //TODO: need to add govt
+    },
+    eligibilities: ['cfra_govt']
+  },
+  {
+    label: 'CA W2 bonding',
+    answers: {
+      why_need_time_off: 'newborn',
+      confirm_state_ca: 'y',
+      which_state: undefined,
+      w2_employee: 'y',
+      earned_300_dollars: 'y',
+      employ_at_least_5: undefined,
+      work_at_least_1_year_1250_hours: undefined,
+      planned_c_section: undefined
+      //TODO: need to add govt
+    },
+    eligibilities: ['bonding']
+  },
+  {
+    label: 'CA W2 medical need',
+    answers: {
+      why_need_time_off: 'medical',
+      confirm_state_ca: 'y',
+      which_state: undefined,
+      w2_employee: 'y',
+      earned_300_dollars: 'y',
+      employ_at_least_5: undefined,
+      work_at_least_1_year_1250_hours: undefined,
+      planned_c_section: undefined
+      //TODO: need to add govt
+    },
+    eligibilities: ['medical_need']
+  },
+  
+ 
   
   // Last item matches everything- all answers are undefined
   {
