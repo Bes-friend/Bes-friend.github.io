@@ -1,3 +1,11 @@
 #eligibilityResults {
 	color: red;
 }
+
+#eligibilityResults .attention {
+	text-transform: uppercase;
+}
+
+#eligibilityResults .question {
+	font-weight: bold;
+}
