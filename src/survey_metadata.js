@@ -68,20 +68,21 @@ var surveyJSON = {
     {
      "type": "radiogroup",
      "name": "why_need_time_off",
-     "title": "Which of the following reasons do you need time off?",
-     "isRequired": false,
+
+     "title": "For which of the following reasons do you need time off?",
+     "isRequired": true,
      "choices": [
       {
        "value": "pregnant",
-       "text": "I am pregnant"
+       "text": "For pregnancy and childbirth"
       },
       {
        "value": "care_for_newborn",
-       "text": "I need to care for a newborn"
+       "text": "To care for a newborn (non-pregnant partner), or newly adopted or fostered child"
       },
       {
        "value": "medical_need",
-       "text": "I have a medical need that requires medical care"
+       "text": "For medical treatment or recovery"
       }
      ],
      "hasOther": true
@@ -90,8 +91,9 @@ var surveyJSON = {
      "type": "radiogroup",
      "name": "confirm_state_ca",
      "visibleIf": "{why_need_time_off} <> 'Other'",
-     "title": "Confirm state = CA?",
-     "isRequired": false,
+
+     "title": "Do you work in California?",
+     "isRequired": true,
      "choices": [
       {
        "value": "y",
@@ -314,7 +316,7 @@ var surveyJSON = {
        "value": "WY",
        "text": "Wyoming (WY)"
       }
-      ]
+     ]
     },
     {
      "type": "radiogroup",
@@ -339,7 +341,7 @@ var surveyJSON = {
      "type": "radiogroup",
      "name": "earned_300_dollars",
      "visible": false,
-     "visibleIf": "{confirm_state_ca} = 'y' and {w2_employee} = 'y'",
+     "visibleIf": "{confirm_state_ca} = 'y' and {w2_employee} = 'y' and {why_need_time_off} <> 'other'",
      "title": "Have you earned at least $300 over the last 18 months?",
      "description": "(It's ok if you earned the $300 over many paychecks, and from different employers. It all counts.)",
      "isRequired": false,
@@ -356,10 +358,31 @@ var surveyJSON = {
     },
     {
      "type": "radiogroup",
+
+     "name": "government",
+     "visible": false,
+     "visibleIf": "{earned_300_dollars} = 'y'",
+     "title": "Do you work for a public school district, or the federal, state, or local government?",
+     "requiredIf": "{earned_300_dollars} = 'y'",
+     "choices": [
+      {
+       "value": "y",
+       "text": "Yes"
+      },
+      {
+       "value": "n",
+       "text": "No"
+      }
+     ]
+    },
+    {
+     "type": "radiogroup",
+
      "name": "employ_at_least_5",
-     "visibleIf": "{confirm_state_ca} = 'y' and {w2_employee} = 'y'",
+     "visibleIf": "{earned_300_dollars} = 'y'",
      "title": "Does your employer employ at least 5 people, including you?",
-     "isRequired": false,
+     "isRequired": true,
+     "requiredIf": "{earned_300_dollars} = 'y'",
      "choices": [
       {
        "value": "yes",
@@ -375,28 +398,11 @@ var surveyJSON = {
      "type": "radiogroup",
      "name": "work_at_least_1_year_1250_hours",
      "visible": false,
-     "visibleIf": "{confirm_state_ca} = 'y' and {employ_at_least_5} = 'yes' and {w2_employee} = 'y'",
+     "visibleIf": "{employ_at_least_5} = 'yes'",
      "title": "Have you worked at your current job for at least 1 year, at least part time?",
      "description": "(Part time means at least 1,250 hours over the last 12 months, or about 25 hours per week.)",
-     "isRequired": false,
-     "choices": [
-      {
-       "value": "yes",
-       "text": "Yes"
-      },
-      {
-       "value": "no",
-       "text": "No"
-      }
-     ]
-    },
-    {
-     "type": "radiogroup",
-     "name": "planned_c_section",
-     "visible": false,
-     "visibleIf": "{w2_employee} = 'y' and {why_need_time_off} = 'pregnant'",
-     "title": "Are you planning to have a Cesarean section (C-section)?",
-     "isRequired": false,
+     "isRequired": true,
+
      "choices": [
       {
        "value": "yes",
