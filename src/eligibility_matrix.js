@@ -85,13 +85,13 @@ const RESULTS = {
   low_earner: {label: 'Sorry', description: 'Please check with your employer.  Lorem ipsum.'},
   
   //caliornians
-  sdi_only: {label:'Yes, you qualify for paid time off', description:'placeholder'},
+  //sdi_only: {label:'Yes, you qualify for paid time off', description:'placeholder'},
   pdl_non_govt: {label:'Yes, you qualify for paid time off', description:'placeholder'},
   pdl_govt: {label:'Yes, you qualify for paid time off', description:'placeholder'},
   cfra_non_govt: {label:'Yes, you qualify for paid time off', description:'placeholder'},
   cfra_govt: {label:'Yes, you qualify for paid time off', description:'placeholder'},
   bonding: {label:'Yes, you should bond with baby!', description:'placeholder'},
-  medical_need: {label:'Care for yourself', description:'placeholder'},
+  //medical_need: {label:'Care for yourself', description:'placeholder'},
   
   /*
   high_earner: {label: 'Yay!', description: 'You qualify for Paid Family and Medical Leaave through the California Paid Family Leave program.'},
