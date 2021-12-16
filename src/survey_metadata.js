@@ -27,6 +27,14 @@ var surveyJSON = {
    "name": "page1",
    "elements": [
     {
+     "type": "text",
+     "name": "What is your birthday?",
+     "valueName": "birthday",
+     "inputType": "date",
+     "min": "1901-01-01",
+     "max": "2030-01-01"
+    },
+    {
       "type": "dropdown",
       "name": "choose_specific_eligibility",
       "title": "Choose a specific eligibility (for testing)",

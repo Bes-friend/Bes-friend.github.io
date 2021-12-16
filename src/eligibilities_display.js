@@ -4,31 +4,33 @@ import ReactMarkdown from 'react-markdown'
 
 import {RESULTS} from './eligibility_matrix.js';
 
-function Eligibility(eligibility) {
-  console.log("Rendering eligibility ", eligibility);
-  if (RESULTS[eligibility.value].react) {
-    var label = <span className='attention'>{RESULTS[eligibility.value].label}</span>
-    var element = React.createElement(RESULTS[eligibility.value].react, null);
+function Eligibility(info) {
+  console.log("Rendering eligibility info", info);
+  const result = RESULTS[info.eligibility];
+  if (result.react) {
+    var label = <span className='attention'>{result.label}</span>
+    const elementProps = {stuff: 'things'};
+    var element = React.createElement(result.react, info.values);
     return [
       label,
       element
     ];
-  } else if (RESULTS[eligibility.value].md) {
+  } else if (result.md) {
     return (
       <div>
-        <span className='attention'>{RESULTS[eligibility.value].label}:</span>&nbsp;<ReactMarkdown children={RESULTS[eligibility.value].md} />
+        <span className='attention'>{result.label}:</span>&nbsp;<ReactMarkdown children={result.md} />
       </div>
     );
-  } else if (RESULTS[eligibility.value].html) {
+  } else if (result.html) {
     return (
       <div>
-        <span className='attention'>{RESULTS[eligibility.value].label}:</span>&nbsp;<span>{renderHTML(RESULTS[eligibility.value].html)}</span>
+        <span className='attention'>{result.label}:</span>&nbsp;<span>{renderHTML(result.html)}</span>
       </div>
     );
   }
   return (
     <div>
-      {RESULTS[eligibility.value].label}: {RESULTS[eligibility.value].description}
+      {result.label}: {result.description}
     </div>
   );
 }
@@ -43,14 +45,14 @@ class EligibilitiesDisplay extends React.Component {
   }
 
   handleChange(e) {
-    this.setState({ eligibilities: e });
+    this.setState(e);
   }
 
   render() {
     const renderValue = []
     for (let i = 0; i < this.state.eligibilities.length; i++) {
       console.log("Rendering eligibilities item ", i, this.state.eligibilities[i]);
-      renderValue.push(<Eligibility value={this.state.eligibilities[i]} key={i}/>)
+      renderValue.push(<Eligibility eligibility={this.state.eligibilities[i]} values={this.state.values} key={i}/>)
     }
 
     return renderValue;

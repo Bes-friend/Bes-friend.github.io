@@ -15,7 +15,8 @@ function onSurveyComplete(results) {
   console.log("Survey is complete:", eligibilityMatch);
   if (eligibilityMatch !== null) {
     console.log('In onSurveyComplete, found match ', eligibilityMatch, );
-    eligibilitiesDisplay.handleChange(eligibilityMatch.eligibilities);
+    const eligibilitiesInfo = {eligibilities: eligibilityMatch.eligibilities, values: results.valuesHash};
+    eligibilitiesDisplay.handleChange(eligibilitiesInfo);
   } else {
     console.log('In onSurveyComplete, did not find eligibility match ');
     // No matches- display warning
