@@ -11,7 +11,7 @@ Once you have JSON you would like to use, replace the value
 of the "surveyJSON" variable with that value.  This file should
 look something like:
 
-  var surveyJSON = [YOUR JSON HERE]
+  let surveyJSON = [YOUR JSON HERE]
 
   export {surveyJSON};
 
@@ -20,7 +20,7 @@ eligible for which programs.  That information is stored in
 the eligibility_matrix.js file.
 */
 
-var surveyJSON = {
+let surveyJSON = {
  "title": "SimpleLeavePlanner",
  "pages": [
   {
