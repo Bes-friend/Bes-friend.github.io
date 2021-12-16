@@ -40,7 +40,7 @@ class EligibilitiesDisplay extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = {eligibilities: []};
+    this.state = {eligibilities: [], values: {}, hidden: true};
 
     this.handleChange = this.handleChange.bind(this);
   }
@@ -50,6 +50,9 @@ class EligibilitiesDisplay extends React.Component {
   }
 
   render() {
+    if (this.state.hidden) {
+      return null;
+    }
     const renderValue = []
     for (let i = 0; i < this.state.eligibilities.length; i++) {
       console.log("Rendering eligibilities item ", i, this.state.eligibilities[i]);
