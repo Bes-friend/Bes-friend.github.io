@@ -8,7 +8,7 @@ import {getEligibilityMatch} from './eligibility_checker.js'
 import {EligibilitiesDisplay} from './eligibilities_display.js'
 
 
-var eligibilitiesDisplay = 0;
+let eligibilitiesDisplay = 0;
 
 function onSurveyComplete(results) {
   let eligibilityMatch = getEligibilityMatch(results.valuesHash);
