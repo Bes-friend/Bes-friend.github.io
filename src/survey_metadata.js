@@ -443,7 +443,8 @@ var surveyJSON = {
    "expression": "{earned_300_dollars} = 'n'"
   }
  ],
- "showTitle": false
+ "showTitle": false,
+ "showCompletedPage": false
 }
 
 export {surveyJSON};
