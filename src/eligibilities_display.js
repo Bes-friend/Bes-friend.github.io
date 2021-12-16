@@ -9,7 +9,6 @@ function Eligibility(info) {
   const result = RESULTS[info.eligibility];
   if (result.react) {
     var label = <span className='attention'>{result.label}</span>
-    const elementProps = {stuff: 'things'};
     var element = React.createElement(result.react, info.values);
     return [
       label,
