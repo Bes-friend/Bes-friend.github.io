@@ -8,8 +8,10 @@ function Eligibility(info) {
   console.log("Rendering eligibility info", info);
   const result = RESULTS[info.eligibility];
   if (result.react) {
-    var label = <span className='attention'>{result.label}</span>
-    var element = React.createElement(result.react, info.values);
+    var label = <span className='attention' key='label'>{result.label}</span>
+    let elementProps = { ...info.values };
+    elementProps['key'] = 'eligibility'
+    var element = React.createElement(result.react, elementProps);
     return [
       label,
       element
@@ -51,7 +53,7 @@ class EligibilitiesDisplay extends React.Component {
     const renderValue = []
     for (let i = 0; i < this.state.eligibilities.length; i++) {
       console.log("Rendering eligibilities item ", i, this.state.eligibilities[i]);
-      renderValue.push(<Eligibility eligibility={this.state.eligibilities[i]} values={this.state.values} key={i}/>)
+      renderValue.push(<Eligibility eligibility={this.state.eligibilities[i]} values={this.state.values} key={this.state.eligibilities[i]}/>)
     }
 
     return renderValue;
