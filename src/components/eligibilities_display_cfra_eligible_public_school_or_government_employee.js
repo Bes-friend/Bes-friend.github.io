@@ -7,7 +7,20 @@ import {Disclaimer} from './disclaimer.js';
 
 class EligibilityDisplayCFRAGovtEmployee extends React.Component {
   render() {
+    var birthdayInfo = '';
+    if (this.props.birthday) {
+      const birthdate = new Date(this.props.birthday);
+      const today = new Date();
+      var age =Math.abs(Math.round((today.getTime() - birthdate.getTime()) / (1000* 60 * 60 * 24 * 365.25)));
+      birthdayInfo = 'You are ' + age + ' years old';
+    }
+    else {
+      birthdayInfo = 'Sorry, no birthday info';
+    }
     return <div>
+      <div>
+        {birthdayInfo}
+      </div>
       <div className='attention'>
         You are eligible for job protected time off
       </div>
