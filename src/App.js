@@ -13,6 +13,7 @@ function App() {
       </div>
       <div id="surveyElement" />
       <div id="eligibilityResults" />
+      <div id="controls" />
       <div>
         This is the footer
       </div>
