@@ -7,6 +7,7 @@ import {surveyJSON} from './survey_metadata.js';
 import {getEligibilityMatch} from './eligibility_checker.js'
 import {EligibilitiesDisplay} from './eligibilities_display.js'
 import {Controls} from './controls.js'
+import {IntlProvider, FormattedMessage} from 'react-intl';
 
 const SHOW_SURVEY = 1;
 const SHOW_RESULTS = 2;
@@ -54,7 +55,8 @@ class App extends React.Component {
       }
     }
 
-    return <div className="App">
+    return <IntlProvider locale={window.language} messages={window.messages[window.language]}>
+      <div className="App">
         <div>
           This is the header
         </div>
@@ -68,7 +70,9 @@ class App extends React.Component {
           <Controls onShowSurvey={this.onShowSurvey} onShowLanguage={this.onShowLanguage} hideRestart={hideResults}/>
         </div>
         <div>
-          This is the footer
+          <FormattedMessage
+            id="app.footer"
+          />
         </div>
       </div>
   };
