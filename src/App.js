@@ -73,6 +73,7 @@ class App extends React.Component {
           <FormattedMessage
             id="app.footer"
             defaultMessage="This is the footer"
+            description="full text of footer"
           />
         </div>
       </div>
