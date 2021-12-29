@@ -42,6 +42,7 @@ class EligibilityDisplayCFRAGovtEmployee extends React.Component {
         <div className='attention'>
             <FormattedMessage
               id="eligibility.eligible_for_job_protected_time_off"
+              defaultMessage="You are eligible for job protected time off"
             />
         </div>
         <ul>

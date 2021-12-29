@@ -23,13 +23,25 @@ When PRs are merged to the `source` branch, those changes are automatically depl
 # Running Locally
 
 * [Install git](https://github.com/git-guides/install-git)
-* [Set up](https://docs.github.com/en/get-started/getting-started-with-git/caching-your-github-credentials-in-git) your Github credentials in git
 * Open a terminal
 * [Clone](https://github.com/git-guides/git-clone) the `source` branch locally via `git clone git@github.com:Bes-friend/Bes-friend.github.io.git` or similar
 * Change to the Bes-friend.github.io directory, e.g. `cd Bes-friend.github.io`
 * Install [Node.js](https://nodejs.org/en/)
 * Install [Yarn](https://classic.yarnpkg.com/lang/en/docs/install/#windows-stable) (one approach is to run `npm install --global yarn`)
 * Run `yarn start`
+
+# String Localization
+
+We use FormatJS (formerly called react-intl) to manage string localization.  Localized strings (in English) are stored directly in the source code as "default" strings, e.g.:
+```
+<FormattedMessage
+  id="welcome_msg"
+  defaultMessage="Welcome to our great project!"
+/>
+```
+Translations, including the English extracted translations, are stored in JSON files in the src/lang directory.
+
+When strings are changed in the app, the English translation file, at src/lang/en.json, should be updated by running `yarn i18n_extract` and then `yarn i18n_compile`.  This will overwrite the contents of the en.json file with the current `defaultMessage` values from the app code.  Other localizations, e.g. the Spanish language file at src/lang/es.json, can be manually updated by localization services.
 
 
 # Getting Started with Create React App

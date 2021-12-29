@@ -20,7 +20,9 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "predeploy": "yarn run build",
-    "deploy": "gh-pages -b main -d build"
+    "deploy": "gh-pages -b main -d build",
+    "i18n_extract": "formatjs extract 'src/**/*.js' --out-file extracted.json",
+    "i18n_compile": "formatjs compile extracted.json --out-file src/lang/en.json"
   },
   "eslintConfig": {
     "extends": [
@@ -41,6 +43,7 @@
     ]
   },
   "devDependencies": {
+    "@formatjs/cli": "^4.5.0",
     "babel-plugin-formatjs": "^10.3.12"
   }
 }
