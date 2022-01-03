@@ -5,65 +5,7 @@ import {EligibilityDisplayPDLEligible} from './components/eligibilities_display_
 import {EligibilityDisplaySDIOnly} from './components/eligibilities_display_sdi_only.js';
 import {EligibilityDisplayBabyBonding} from './components/eligibilities_display_baby_bonding.js';
 import {EligibilityDisplayMedicalNeed} from './components/eligibilities_display_medical_need.js';
-
-//trying this out
-const NOT_SUPPORTED = `
-<div>
-  This tool does not currently cover non-California workers or non-W-2 workers.
-</div>
-<br/>
-<div>
-  For California workers who are not currently employed, but earned at
-  least $300 in the last 12 months, you may still be eligible for Short
-  Term Disability and Paid Family Leave as long as your paystub or w-2
-  shows a deduction for "CA SDI" and you are not currently claiming
-  unemployment insurance. This means that you have paid into the state's
-  disability insurance fund. You can apply for payment on California
-  Employment Development Department's website for
-  &nbsp;<a href='https://edd.ca.gov/disability/paid-family-leave/'>
-    Paid Family Leave
-  </a>.
-</div>
-<div>
-  For California workers who do not receive a W-2, consider visiting these
-  other resources:
-</div>
-<ul>
-  <li>
-    California Employment Development Department's website on
-    <a href='https://edd.ca.gov/disability/paid-family-leave/Mothers.htm'>
-      Paid Family Leave for Pregnant Mothers
-    </a>
-  </li>
-  <li>
-    California Employment Development Department's website on
-    &nbsp;<a href='https://edd.ca.gov/disability/paid-family-leave/Self-Employed.htm'>
-      Paid Family Leave for Self Employed individuals
-    </a>
-  </li>
-  <li>
-    <a href='https://legalaidatwork.org/our-programs/work-and-family-program/'>
-      Legal Aid at Work's website
-    </a>
-    &nbsp;to find more resources or to call their hotline.
-  </li>
-</ul>
-<div>
-  For non-California workers, you may be able to learn more about your benefits by:
-</div>
-<ul>
-  <li>
-    Searching online for your state and "Paid Family Leave" to see if your state has a similar program
-  </li>
-  <li>
-    Finding out if your employer offers Short Term Disability insurance. If so, read the benefits plan carefully. If it covers pregnancy, you may be able to submit a claim to the insurance plan and receive partial payment for your time off.
-  </li>
-  <li>
-    Finding out if your employer offers maternity, paternity, or parental leave. You could find out either by reading an employee handbook if your employer has one, or asking your Human Resources department.
-  </li>
-</ul>
-
-`
+import {EligibilityDisplayNotSupported} from './components/eligibilities_display_not_supported.js';
 
 /*
 The RESULTS constant contains all results that may be displayed
@@ -71,6 +13,7 @@ to users.  For example, one user may get a single result like
 'not eligible for any programs', while another use may get multiple
 results like 'you are eligible for FMLA' and 'you are eligible for SNAP'.
 */
+//TODO: "label" is not yet localized, but we might delete it?
 const RESULTS = {
   cfra_eligible_public_school_or_government_employee: {react: EligibilityDisplayCFRAGovtEmployee},
   pdl_eligible_public_school_or_government_employee: {react: EligibilityDisplayPDLEligibleGovtEmployee},
@@ -79,9 +22,9 @@ const RESULTS = {
   sdi_only: {react: EligibilityDisplaySDIOnly},
   baby_bonding: {react: EligibilityDisplayBabyBonding},
   medical_need: {react: EligibilityDisplayMedicalNeed},
-  not_supported: {html: NOT_SUPPORTED},
-  not_ca: {md: NOT_SUPPORTED},
-  not_w2: {md: NOT_SUPPORTED},
+  not_supported: {react: EligibilityDisplayNotSupported},
+  not_ca: {react: EligibilityDisplayNotSupported},
+  not_w2: {react: EligibilityDisplayNotSupported},
   low_earner: {description: 'Please check with your employer.  Lorem ipsum.'},
   
   //caliornians

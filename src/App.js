@@ -58,7 +58,11 @@ class App extends React.Component {
     return <IntlProvider locale={window.language} messages={window.messages[window.language]}>
       <div className="App">
         <div>
-          This is the header
+          <FormattedMessage
+            id="app.header"
+            defaultMessage="This is the header"
+            description="full text of header"
+          />
         </div>
         <div id="surveyElement">
           <Survey.Survey model={this.survey} hidden={hideSurvey}/>
