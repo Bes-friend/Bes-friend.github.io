@@ -8,7 +8,7 @@ import {IntlProvider, FormattedMessage} from 'react-intl';
 
 class EligibilityDisplayBabyBonding extends React.Component {
   render() {
-    return <IntlProvider locale={window.language} messages={window.messages[window.language]}>
+    return <IntlProvider locale={this.props.language} messages={this.props.messages}>
       <div>
         <div>
           <FormattedMessage
@@ -34,7 +34,7 @@ class EligibilityDisplayBabyBonding extends React.Component {
             description="Child bonding depends on number of employees"
           />
         </div>
-        <Timeline/>
+        <Timeline language={this.props.language} messages={this.props.messages}/>
         <div>
           <FormattedMessage
             id="eligibility.bonding.operator"
@@ -53,10 +53,10 @@ class EligibilityDisplayBabyBonding extends React.Component {
             }}
           />
         </div>
-        <RegisterAndApply/>
-        <Faq/>
-        <Help/>
-        <Disclaimer/>
+        <RegisterAndApply locale={this.props.language} messages={this.props.messages}/>
+        <Faq locale={this.props.language} messages={this.props.messages}/>
+        <Help locale={this.props.language} messages={this.props.messages}/>
+        <Disclaimer locale={this.props.language} messages={this.props.messages}/>
       </div>
     </IntlProvider>
   }

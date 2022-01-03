@@ -55,7 +55,7 @@ class App extends React.Component {
       }
     }
 
-    return <IntlProvider locale={window.language} messages={window.messages[window.language]}>
+    return <IntlProviderlocale={this.state.language} messages={this.state.messages}>
       <div className="App">
         <div>
           <FormattedMessage

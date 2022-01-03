@@ -3,7 +3,7 @@ import {IntlProvider, FormattedMessage} from 'react-intl';
 
 class Disclaimer extends React.Component {
   render() {
-    return <IntlProvider locale={window.language} messages={window.messages[window.language]}>
+    return <IntlProvider locale={this.props.language} messages={this.props.messages}>
       <div>
         <div>
           <FormattedMessage

@@ -29,7 +29,7 @@ const BirthdayInfo = ({birthday}) => {
 
 class EligibilityDisplayCFRAGovtEmployee extends React.Component {
   render() {
-    return <IntlProvider locale={window.language} messages={window.messages[window.language]}>
+    return <IntlProvider locale={this.props.language} messages={this.props.messages}>
       <div>
         <div>
           <BirthdayInfo birthday={this.props.birthday} />
@@ -78,11 +78,11 @@ class EligibilityDisplayCFRAGovtEmployee extends React.Component {
             }}
           />
         </div>
-        <Timeline/>
-        <RegisterAndApply/>
-        <Faq/>
-        <Help/>
-        <Disclaimer/>
+        <Timeline language={this.props.language} messages={this.props.messages}/>
+        <RegisterAndApply language={this.props.language} messages={this.props.messages}/>
+        <Faq language={this.props.language} messages={this.props.messages}/>
+        <Help language={this.props.language} messages={this.props.messages}/>
+        <Disclaimer language={this.props.language} messages={this.props.messages}/>
       </div>
     </IntlProvider>
   }

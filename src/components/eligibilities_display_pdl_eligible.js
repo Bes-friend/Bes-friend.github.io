@@ -8,7 +8,7 @@ import {IntlProvider, FormattedMessage} from 'react-intl';
 
 class EligibilityDisplayPDLEligible extends React.Component {
   render() {
-    return <IntlProvider locale={window.language} messages={window.messages[window.language]}>
+    return <IntlProvider locale={this.props.language} messages={this.props.messages}>
       <div>
         <div className='attention'>
           <div>
@@ -57,10 +57,10 @@ class EligibilityDisplayPDLEligible extends React.Component {
             description="Description of operator of PDL program"
           />
         </div>
-        <RegisterAndApply/>
-        <Faq/>
-        <Help/>
-        <Disclaimer/>
+        <RegisterAndApply language={this.props.language} messages={this.props.messages}/>
+        <Faq language={this.props.language} messages={this.props.messages}/>
+        <Help language={this.props.language} messages={this.props.messages}/>
+        <Disclaimer language={this.props.language} messages={this.props.messages}/>
       </div>
     </IntlProvider>
   }

@@ -8,7 +8,7 @@ import {IntlProvider, FormattedMessage} from 'react-intl';
 
 class EligibilityDisplaySDIOnly extends React.Component {
   render() {
-    return <IntlProvider locale={window.language} messages={window.messages[window.language]}>
+    return <IntlProvider locale={this.props.language} messages={this.props.messages}>
       <div>
         <div>
           <div>
@@ -34,10 +34,10 @@ class EligibilityDisplaySDIOnly extends React.Component {
             description="Details of SDI benefits"
           />
         </div>
-        <RegisterAndApply/>
-        <Faq/>
-        <Help/>
-        <Disclaimer/>
+        <RegisterAndApply language={this.props.language} messages={this.props.messages}/>
+        <Faq language={this.props.language} messages={this.props.messages}/>
+        <Help language={this.props.language} messages={this.props.messages}/>
+        <Disclaimer language={this.props.language} messages={this.props.messages}/>
       </div>
     </IntlProvider>
   }

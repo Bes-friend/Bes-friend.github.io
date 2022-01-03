@@ -7,7 +7,7 @@ import {RESULTS} from './eligibility_matrix.js';
 function Eligibility(info) {
   const result = RESULTS[info.eligibility];
   if (result.react) {
-    let elementProps = { ...info.values };
+    let elementProps = { ...info.values, language: info.language, messages: info.messages };
     elementProps['key'] = 'eligibility'
     return React.createElement(result.react, elementProps);
   } else if (result.md) {
@@ -31,6 +31,17 @@ function Eligibility(info) {
 }
 
 class EligibilitiesDisplay extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {eligibilities: [], values: {}, hidden: true, language: props.language, messages: props.messages};
+
+    this.handleChange = this.handleChange.bind(this);
+  }
+
+  handleChange(e) {
+    this.setState(e);
+  }
+
   render() {
     if (this.props.hidden) {
       return null;

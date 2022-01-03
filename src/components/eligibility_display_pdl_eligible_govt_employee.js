@@ -7,7 +7,7 @@ import {IntlProvider, FormattedMessage} from 'react-intl';
 
 class EligibilityDisplayPDLEligibleGovtEmployee extends React.Component {
   render() {
-    return <IntlProvider locale={window.language} messages={window.messages[window.language]}>
+    return <IntlProvider locale={this.props.language} messages={this.props.messages}>
       <div>
         <div className='attention'>
           <FormattedMessage
@@ -51,10 +51,10 @@ class EligibilityDisplayPDLEligibleGovtEmployee extends React.Component {
             less or prevent you from taking the time off.
           </div>
         </div>
-        <Timeline/>
-        <RegisterAndApply/>
-        <Faq/>
-        <Help/>
+        <Timeline language={this.props.language} messages={this.props.messages}/>
+        <RegisterAndApply language={this.props.language} messages={this.props.messages}/>
+        <Faq language={this.props.language} messages={this.props.messages}/>
+        <Help language={this.props.language} messages={this.props.messages}/>
       </div>
     </IntlProvider>
   }
