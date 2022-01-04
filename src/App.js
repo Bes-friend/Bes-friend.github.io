@@ -25,8 +25,6 @@ class App extends React.Component {
 
     this.state = { displayState: SHOW_SURVEY, surveyResults: null, language: props.language, messages: props.messages};
 
-    this.state = { displayState: SHOW_SURVEY, surveyResults: null};
-
     this.survey = new Survey.Model(surveyJSON);
     this.survey.locale = this.state.language;
     this.survey
