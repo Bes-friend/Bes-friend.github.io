@@ -14,6 +14,9 @@ import {getEligibilityMatch} from './eligibility_checker.js'
 import {EligibilitiesDisplay} from './eligibilities_display.js'
 import {Controls} from './controls.js'
 
+import messages_en from "./lang/en.json";
+import messages_es from "./lang/es.json";
+
 const SHOW_SURVEY = 1;
 const SHOW_RESULTS = 2;
 
@@ -23,14 +26,21 @@ class App extends React.Component {
 
     this.onSurveyComplete = this.onSurveyComplete.bind(this);
     this.onShowSurvey = this.onShowSurvey.bind(this);
+    this.onShowLanguage = this.onShowLanguage.bind(this);
+
+    this.state = { displayState: SHOW_SURVEY, surveyResults: null, language: props.language, messages: props.messages};
 
     this.state = { displayState: SHOW_SURVEY, surveyResults: null};
 
     this.survey = new Survey.Model(surveyJSON);
-    this.survey.locale = this.props.language;
+    this.survey.locale = this.state.language;
     this.survey
       .onComplete
       .add(this.onSurveyComplete);
+<<<<<<< HEAD
+=======
+
+>>>>>>> Adding buttons to choose language
   }
 
   onSurveyComplete(results) {
@@ -41,6 +51,17 @@ class App extends React.Component {
     this.survey.clear();
     this.survey.render();
     this.setState({displayState: SHOW_SURVEY, surveyResults: null});
+  }
+
+  onShowLanguage(lang) {
+    if (lang === 'es') {
+      this.setState({language: lang, messages: messages_es});
+      this.survey.locale = 'es';
+    } else {
+      // Default to English if not recognized
+      this.setState({language: 'en', messages: messages_en});
+      this.survey.locale = 'en';
+    }
   }
 
   render() {
@@ -73,10 +94,10 @@ class App extends React.Component {
           <Survey.Survey model={this.survey} hidden={hideSurvey}/>
         </div>
         <div id="eligibilityResults">
-          <EligibilitiesDisplay language={this.props.language} messages={this.props.messages} hidden={hideResults} eligibilities={eligibilities} values={values}/>
+          <EligibilitiesDisplay language={this.state.language} messages={this.state.messages} hidden={hideResults} eligibilities={eligibilities} values={values}/>
         </div>
         <div id="controls">
-          <Controls onShowSurvey={this.onShowSurvey} onShowLanguage={this.onShowLanguage} hideRestart={hideResults}/>
+          <Controls language={this.state.language} messages={this.state.messages} onShowSurvey={this.onShowSurvey} onShowLanguage={this.onShowLanguage} hideRestart={hideResults}/>
         </div>
         <div>
           <FormattedMessage
