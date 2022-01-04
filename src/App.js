@@ -8,11 +8,6 @@ import {getEligibilityMatch} from './eligibility_checker.js'
 import {EligibilitiesDisplay} from './eligibilities_display.js'
 import {Controls} from './controls.js'
 import {IntlProvider, FormattedMessage} from 'react-intl';
-import * as Survey from "survey-react";
-import {surveyJSON} from './survey_metadata.js';
-import {getEligibilityMatch} from './eligibility_checker.js'
-import {EligibilitiesDisplay} from './eligibilities_display.js'
-import {Controls} from './controls.js'
 
 import messages_en from "./lang/en.json";
 import messages_es from "./lang/es.json";
@@ -37,10 +32,6 @@ class App extends React.Component {
     this.survey
       .onComplete
       .add(this.onSurveyComplete);
-<<<<<<< HEAD
-=======
-
->>>>>>> Adding buttons to choose language
   }
 
   onSurveyComplete(results) {
@@ -81,7 +72,7 @@ class App extends React.Component {
       }
     }
 
-    return <IntlProviderlocale={this.state.language} messages={this.state.messages}>
+    return <IntlProvider locale={this.state.language} messages={this.state.messages}>
       <div className="App">
         <div>
           <FormattedMessage
