@@ -5,7 +5,6 @@ import ReactMarkdown from 'react-markdown'
 import {RESULTS} from './eligibility_matrix.js';
 
 function Eligibility(info) {
-  console.log("Rendering eligibility info", info);
   const result = RESULTS[info.eligibility];
   if (result.react) {
     let label = <span className='attention' key='label'>{result.label}</span>
@@ -37,26 +36,14 @@ function Eligibility(info) {
 }
 
 class EligibilitiesDisplay extends React.Component {
-
-  constructor(props) {
-    super(props);
-    this.state = {eligibilities: [], values: {}, hidden: true};
-
-    this.handleChange = this.handleChange.bind(this);
-  }
-
-  handleChange(e) {
-    this.setState(e);
-  }
-
   render() {
-    if (this.state.hidden) {
+    if (this.props.hidden) {
       return null;
     }
     const renderValue = []
-    for (let i = 0; i < this.state.eligibilities.length; i++) {
-      console.log("Rendering eligibilities item ", i, this.state.eligibilities[i]);
-      renderValue.push(<Eligibility eligibility={this.state.eligibilities[i]} values={this.state.values} key={this.state.eligibilities[i]}/>)
+    for (let i = 0; i < this.props.eligibilities.length; i++) {
+      console.log("Rendering eligibilities item ", i, this.props.eligibilities[i]);
+      renderValue.push(<Eligibility eligibility={this.props.eligibilities[i]} values={this.props.values} key={this.props.eligibilities[i]}/>)
     }
 
     return renderValue;

@@ -18,13 +18,7 @@ To change code, you'd normally do something like:
 
 # Deploying
 
-See https://dev.to/javascripterika/deploy-a-react-app-as-a-github-user-page-with-yarn-3fka for details on how build/deploy is set up
-
-To deploy:
-
-* `git checkout source`
-* `git pull`
-* `yarn deploy`
+When PRs are merged to the `source` branch, those changes are automatically deployed via a Git Action (assuming that compilation is successful.) No extra steps are needed.
 
 # Running Locally
 
