@@ -31,17 +31,6 @@ function Eligibility(info) {
 }
 
 class EligibilitiesDisplay extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {eligibilities: [], values: {}, hidden: true, language: props.language, messages: props.messages};
-
-    this.handleChange = this.handleChange.bind(this);
-  }
-
-  handleChange(e) {
-    this.setState(e);
-  }
-
   render() {
     if (this.props.hidden) {
       return null;
@@ -49,7 +38,7 @@ class EligibilitiesDisplay extends React.Component {
     const renderValue = []
     for (let i = 0; i < this.props.eligibilities.length; i++) {
       console.log("Rendering eligibilities item ", i, this.props.eligibilities[i]);
-      renderValue.push(<Eligibility eligibility={this.props.eligibilities[i]} values={this.props.values} key={this.props.eligibilities[i]}/>)
+      renderValue.push(<Eligibility eligibility={this.props.eligibilities[i]} values={this.props.values} key={this.props.eligibilities[i]} language={this.props.language} messages={this.props.messages}/>)
     }
 
     return renderValue;

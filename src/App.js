@@ -8,6 +8,11 @@ import {getEligibilityMatch} from './eligibility_checker.js'
 import {EligibilitiesDisplay} from './eligibilities_display.js'
 import {Controls} from './controls.js'
 import {IntlProvider, FormattedMessage} from 'react-intl';
+import * as Survey from "survey-react";
+import {surveyJSON} from './survey_metadata.js';
+import {getEligibilityMatch} from './eligibility_checker.js'
+import {EligibilitiesDisplay} from './eligibilities_display.js'
+import {Controls} from './controls.js'
 
 const SHOW_SURVEY = 1;
 const SHOW_RESULTS = 2;
@@ -22,10 +27,10 @@ class App extends React.Component {
     this.state = { displayState: SHOW_SURVEY, surveyResults: null};
 
     this.survey = new Survey.Model(surveyJSON);
+    this.survey.locale = this.props.language;
     this.survey
       .onComplete
       .add(this.onSurveyComplete);
-
   }
 
   onSurveyComplete(results) {
@@ -68,7 +73,7 @@ class App extends React.Component {
           <Survey.Survey model={this.survey} hidden={hideSurvey}/>
         </div>
         <div id="eligibilityResults">
-          <EligibilitiesDisplay hidden={hideResults} eligibilities={eligibilities} values={values}/>
+          <EligibilitiesDisplay language={this.props.language} messages={this.props.messages} hidden={hideResults} eligibilities={eligibilities} values={values}/>
         </div>
         <div id="controls">
           <Controls onShowSurvey={this.onShowSurvey} onShowLanguage={this.onShowLanguage} hideRestart={hideResults}/>
@@ -81,6 +86,7 @@ class App extends React.Component {
           />
         </div>
       </div>
+    </IntlProvider>
   };
 }
 

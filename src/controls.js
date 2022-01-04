@@ -12,7 +12,7 @@ class Controls extends React.Component {
   }
 
   render() {
-    return <IntlProvider locale={window.language} messages={window.messages[window.language]}>
+    return <IntlProvider locale={this.props.language} messages={this.props.messages}>
       <div>
         { !this.props.hideRestart &&
         <button onClick={this.restartSurvey}>
