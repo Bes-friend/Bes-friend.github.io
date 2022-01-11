@@ -4,52 +4,87 @@ import {RegisterAndApply} from './register_and_apply.js';
 import {Faq} from './faq.js';
 import {Help} from './help.js';
 import {Disclaimer} from './disclaimer.js';
+import {IntlProvider, FormattedMessage} from 'react-intl';
 
 const BirthdayInfo = ({birthday}) => {
   if (birthday) {
     const birthdate = new Date(birthday);
     const today = new Date();
-    const age = Math.abs(Math.round((today.getTime() - birthdate.getTime()) / (1000* 60 * 60 * 24 * 365.25)));
-    return <div>
-      You are {age} years old
-    </div>
+    let ageInfo  = { age: Math.abs(Math.round((today.getTime() - birthdate.getTime()) / (1000* 60 * 60 * 24 * 365.25))) };
+    return <FormattedMessage
+      id="eligibility.cfra_gov.birthday"
+      defaultMessage="You are {age, plural, =0 {zero years} one {# year} other {# years}} old"
+      values={ageInfo}
+      description="Tells user how many years old they are"
+    />
   }
   else {
-    return <div>
-      Sorry, no birthday info
-    </div>
+    return <FormattedMessage
+      id="eligibility.cfra_gov.no_birthday"
+      defaultMessage="Sorry, no birthday info"
+      description="Tells user we do not know how old they are"
+    />
   }
 }
 
 class EligibilityDisplayCFRAGovtEmployee extends React.Component {
   render() {
-    return <div>
+    return <IntlProvider locale={this.props.language} messages={this.props.messages}>
+      <div>
         <div>
           <BirthdayInfo birthday={this.props.birthday} />
         </div>
         <div className='attention'>
-          You are eligible for job protected time off
+            <FormattedMessage
+              id="eligibility.cfra_gov.time_off"
+              defaultMessage="You are eligible for job protected time off"
+              description="Header summarizing that govt employee is eligible for time off"
+            />
         </div>
         <ul>
           <li>
-            22 weeks of job protected time off for a vaginal delivery, 4 weeks prior to your due date, and 18 weeks after. This reflects the typical timeline. Your doctor may request additional time on your behalf.
+            <FormattedMessage
+              id="eligibility.cfra_gov.vaginal_delivery"
+              defaultMessage="22 weeks of job protected time off for a vaginal delivery, 4 weeks prior to your due date, and 18 weeks after. This reflects the typical timeline. Your doctor may request additional time on your behalf."
+              description="Time off info based on vaginal delivery"
+            />
           </li>
           <li>
-            24 weeks of job protected time off for a C-section delivery, 4 weeks prior to your due date, and 20 weeks after. This reflects the typical timeline. Your doctor may request additional time on your behalf.
+            <FormattedMessage
+              id="eligibility.cfra_gov.c_sectiondelivery"
+              defaultMessage="24 weeks of job protected time off for a C-section delivery, 4 weeks prior to your due date, and 20 weeks after. This reflects the typical timeline. Your doctor may request additional time on your behalf."
+              description="Time off info based on cesarian section delivery"
+            />
           </li>
           <li>
-            Talk to your employer to understand what options you have to get paid during your time off. You should also check your paystub for a deduction called 'CA SDI.' If it appears on your current paystub, or on any paystub from the last 18 months, you may be eligible to claim payments from the <a href='https://edd.ca.gov/disability/paid-family-leave/'>California Paid Family Leave program</a>.
+            <FormattedMessage
+              id="eligibility.cfra_gov.talk_to_employer"
+              defaultMessage="Talk to your employer to understand what options you have to get paid during your time off. You should also check your paystub for a deduction called 'CA SDI.' If it appears on your current paystub, or on any paystub from the last 18 months, you may be eligible to claim payments from the <cplp>California Paid Family Leave program</cplp>."
+              description="Talk to employer about options"
+              values={{
+                cplp: chunks => <a href='https://edd.ca.gov/disability/paid-family-leave/'>{chunks}</a>
+              }}
+            />
           </li>
         </ul>
         <div>
-          Your right to take this time off is granted by the <a href='https://www.dfeh.ca.gov/wp-content/uploads/sites/32/2020/12/Coming-Soon_Expanded-Family-And-Medical-Leave_ENG.pdf'>California Family Rights Act</a> and by the <a href='https://www.dfeh.ca.gov/wp-content/uploads/sites/32/2020/12/Pregnancy-Disability-Leave-Fact-Sheet_ENG.pdf'>Pregnancy Disability Leave law</a>. Your employer is allowed to offer you a longer period of time off, or to pay you more than what the state provides while you are out. However, your employer cannot offer you less or prevent you from taking the time off.
+          <FormattedMessage
+            id="eligibility.cfra_gov.ca_family_rights_act"
+            defaultMessage="Your right to take this time off is granted by the <cfra>California Family Rights Act</cfra> and by the <pdl>Pregnancy Disability Leave law</pdl> . Your employer is allowed to offer you a longer period of time off, or to pay you more than what the state provides while you are out. However, your employer cannot offer you less or prevent you from taking the time off."
+            description="Time off info based on cesarian section delivery"
+            values={{
+              cfra: chunks => <a href='https://www.dfeh.ca.gov/wp-content/uploads/sites/32/2020/12/Coming-Soon_Expanded-Family-And-Medical-Leave_ENG.pdf'>{chunks}</a>,
+              pdl: chunks => <a href='https://www.dfeh.ca.gov/wp-content/uploads/sites/32/2020/12/Pregnancy-Disability-Leave-Fact-Sheet_ENG.pdf'>{chunks}</a>
+            }}
+          />
         </div>
-        <Timeline/>
-        <RegisterAndApply/>
-        <Faq/>
-        <Help/>
-        <Disclaimer/>
+        <Timeline language={this.props.language} messages={this.props.messages}/>
+        <RegisterAndApply language={this.props.language} messages={this.props.messages}/>
+        <Faq language={this.props.language} messages={this.props.messages}/>
+        <Help language={this.props.language} messages={this.props.messages}/>
+        <Disclaimer language={this.props.language} messages={this.props.messages}/>
       </div>
+    </IntlProvider>
   }
 }
 

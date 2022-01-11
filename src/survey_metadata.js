@@ -37,11 +37,17 @@ let surveyJSON = {
     {
       "type": "dropdown",
       "name": "choose_specific_eligibility",
-      "title": "Choose a specific eligibility (for testing)",
+      "title": {
+        "default": "EN: Choose a specific eligibility (for testing)",
+        "es": "ES: Choose a specific eligibility (for testing)"
+      },
       "choices": [
       {
         "value": "cfra_eligible_public_school_or_government_employee",
-        "text": "CFRA eligible public school or government employee"
+        "text": {
+          "default": "EN: CFRA eligible public school or government employee",
+          "es": "ES: CFRA eligible public school or government employee"
+        },
       },
       {
         "value": "pdl_eligible_public_school_or_government_employee",

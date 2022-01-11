@@ -7,7 +7,7 @@ import {RESULTS} from './eligibility_matrix.js';
 function Eligibility(info) {
   const result = RESULTS[info.eligibility];
   if (result.react) {
-    let elementProps = { ...info.values };
+    let elementProps = { ...info.values, language: info.language, messages: info.messages };
     elementProps['key'] = 'eligibility'
     return React.createElement(result.react, elementProps);
   } else if (result.md) {
@@ -38,7 +38,7 @@ class EligibilitiesDisplay extends React.Component {
     const renderValue = []
     for (let i = 0; i < this.props.eligibilities.length; i++) {
       console.log("Rendering eligibilities item ", i, this.props.eligibilities[i]);
-      renderValue.push(<Eligibility eligibility={this.props.eligibilities[i]} values={this.props.values} key={this.props.eligibilities[i]}/>)
+      renderValue.push(<Eligibility eligibility={this.props.eligibilities[i]} values={this.props.values} key={this.props.eligibilities[i]} language={this.props.language} messages={this.props.messages}/>)
     }
 
     return renderValue;
