@@ -72,38 +72,38 @@ to users.  For example, one user may get a single result like
 results like 'you are eligible for FMLA' and 'you are eligible for SNAP'.
 */
 const RESULTS = {
-  cfra_eligible_public_school_or_government_employee: {label: 'Yes!', react: EligibilityDisplayCFRAGovtEmployee},
-  pdl_eligible_public_school_or_government_employee: {label: 'Yes!', react: EligibilityDisplayPDLEligibleGovtEmployee},
-  cfra_eligible: {label: 'Yes!', react: EligibilityDisplayCFRA},
-  pdl_eligible: {label: 'Yes!', react: EligibilityDisplayPDLEligible},
-  sdi_only: {label: 'You qualify for paid time off', react: EligibilityDisplaySDIOnly},
-  baby_bonding: {label: 'You can take time off', react: EligibilityDisplayBabyBonding},
-  medical_need: {label: 'You may qualify for paid time off', react: EligibilityDisplayMedicalNeed},
+  cfra_eligible_public_school_or_government_employee: {react: EligibilityDisplayCFRAGovtEmployee},
+  pdl_eligible_public_school_or_government_employee: {react: EligibilityDisplayPDLEligibleGovtEmployee},
+  cfra_eligible: {react: EligibilityDisplayCFRA},
+  pdl_eligible: {react: EligibilityDisplayPDLEligible},
+  sdi_only: {react: EligibilityDisplaySDIOnly},
+  baby_bonding: {react: EligibilityDisplayBabyBonding},
+  medical_need: {react: EligibilityDisplayMedicalNeed},
   not_supported: {html: NOT_SUPPORTED},
-  not_ca: {label: 'Sorry', md: NOT_SUPPORTED},
-  not_w2: {label: 'Sorry', md: NOT_SUPPORTED},
-  low_earner: {label: 'Sorry', description: 'Please check with your employer.  Lorem ipsum.'},
+  not_ca: {md: NOT_SUPPORTED},
+  not_w2: {md: NOT_SUPPORTED},
+  low_earner: {description: 'Please check with your employer.  Lorem ipsum.'},
   
   //caliornians
-  //sdi_only: {label:'Yes, you qualify for paid time off', description:'placeholder'},
-  pdl_non_govt: {label:'Yes, you qualify for paid time off', description:'placeholder'},
-  pdl_govt: {label:'Yes, you qualify for paid time off', description:'placeholder'},
-  cfra_non_govt: {label:'Yes, you qualify for paid time off', description:'placeholder'},
-  cfra_govt: {label:'Yes, you qualify for paid time off', description:'placeholder'},
-  bonding: {label:'Yes, you should bond with baby!', description:'placeholder'},
-  //medical_need: {label:'Care for yourself', description:'placeholder'},
+  //sdi_only: {description:'placeholder'},
+  pdl_non_govt: {description:'placeholder'},
+  pdl_govt: {description:'placeholder'},
+  cfra_non_govt: {description:'placeholder'},
+  cfra_govt: {description:'placeholder'},
+  bonding: {description:'placeholder'},
+  //medical_need: {description:'placeholder'},
   
   /*
-  high_earner: {label: 'Yay!', description: 'You qualify for Paid Family and Medical Leaave through the California Paid Family Leave program.'},
+  high_earner: {description: 'You qualify for Paid Family and Medical Leaave through the California Paid Family Leave program.'},
   job_protected: {description: 'When you return from your time off, your employer must give you your job back (or an equivalent job.)'},
   pregnant_and_cfra: {description: 'You can start your time off up to 4 weeks before your due date, and take up to 18 weeks after your baby is born. However, the Paid Family Leave program will only pay up to 17 weeks.'},
   c_section: {description: 'Typically, women who experience a c-section will get an additional 2 weeks of leave. This means that you can take up to 20 weeks after your baby is born, and the Paid Family Leave program will pay up to 19 weeks.'},
-  bonding_only: {label: 'Care for your newborn', description:'For non-birthing parents, you qualify for 8 weeks of time off.'},
+  bonding_only: {description:'For non-birthing parents, you qualify for 8 weeks of time off.'},
   */
   //based on latest survey questions
   
   
-  catchall: {label: 'Ohno!', description: 'We do not have a coherent response for these choices.  Lorem ipsum. 5!'},
+  catchall: {description: 'We do not have a coherent response for these choices.  Lorem ipsum. 5!'},
 };
 
 

@@ -7,30 +7,25 @@ import {RESULTS} from './eligibility_matrix.js';
 function Eligibility(info) {
   const result = RESULTS[info.eligibility];
   if (result.react) {
-    let label = <span className='attention' key='label'>{result.label}</span>
     let elementProps = { ...info.values };
     elementProps['key'] = 'eligibility'
-    let element = React.createElement(result.react, elementProps);
-    return [
-      label,
-      element
-    ];
+    return React.createElement(result.react, elementProps);
   } else if (result.md) {
     return (
       <div>
-        <span className='attention'>{result.label}:</span>&nbsp;<ReactMarkdown children={result.md} />
+        <ReactMarkdown children={result.md} />
       </div>
     );
   } else if (result.html) {
     return (
       <div>
-        <span className='attention'>{result.label}:</span>&nbsp;<span>{renderHTML(result.html)}</span>
+        <span>{renderHTML(result.html)}</span>
       </div>
     );
   }
   return (
     <div>
-      {result.label}: {result.description}
+      {result.description}
     </div>
   );
 }
